@@ -2,11 +2,13 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title ChrisTest
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1.0"}
+    %title= t('title')
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  %body
-    %p.notice= notice
-    %p.alert= alert
-    = yield
+  %body.d-flex.flex-column
+    = render 'layouts/header'
+    = render 'layouts/messages'
+    .container
+      = yield

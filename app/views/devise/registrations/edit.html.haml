@@ -1,0 +1,41 @@
+.d-flex.align-items-center.my-4
+  %h1.mr-auto.display-5= t('nav.edit_profile')
+  %ul.nav
+    %li.nav-item
+      = link_to t('nav.back'), posts_path, class: "nav-link"
+
+= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+  - if devise_error_messages!
+    = devise_error_messages!
+  .form-group
+    = f.label :email
+    = f.email_field :email, autofocus: true, class: "form-control"
+  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+    .form-group
+      .alert.alert-info Currently waiting confirmation for: #{resource.unconfirmed_email}
+  .form-group
+    = f.label :password
+    %i (leave blank if you don't want to change it)
+    = f.password_field :password, autocomplete: "off", class: "form-control"
+    - if @minimum_password_length
+      %br/
+      %em
+        = @minimum_password_length
+        characters minimum
+  .form-group
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation, autocomplete: "off", class: "form-control"
+  .form-group
+    = f.label :current_password
+    %i (we need your current password to confirm your changes)
+    = f.password_field :current_password, autocomplete: "off", class: "form-control"
+  = f.submit "Update", class: "btn btn-primary"
+%h3.mt-4 Change language
+- if I18n.locale == I18n.default_locale
+  = link_to "Spanish", { locale: "es" }
+- else
+  = link_to "English", { locale: "en" }
+
+%h3.mt-4 Cancel my account
+%p Unhappy?
+= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger"

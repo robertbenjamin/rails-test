@@ -1,0 +1,9 @@
+.d-flex.align-items-center.my-4
+  %h1.mr-auto.display-5= t('edit_post')
+  %ul.nav
+    %li.nav-item
+      = link_to t('nav.show'), @post, class: "nav-link"
+    %li.nav-item
+      = link_to t('nav.back'), posts_path, class: "nav-link"
+
+= render 'form'

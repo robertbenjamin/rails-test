@@ -1,0 +1,21 @@
+.d-flex.align-items-center.my-4
+  %h1.mr-auto.display-5= t('posts')
+  - if current_user
+    = link_to t('new_post'), new_post_path(current_user)
+
+- @posts.each do |post|
+  .card.mb-3
+    .card-block
+      = link_to post_path(post) do
+        %h4.cart-title= post.title
+      %p.card-text= post.body
+    .card-footer.d-flex.text-muted
+      - if I18n.locale == I18n.default_locale
+        .card-text.mr-auto Posted #{time_ago_in_words(post.created_at)} ago
+      - else
+        .card-text.mr-auto #{post.created_at}
+      - if current_user
+        - if post.user_id == current_user.id
+          = link_to t('nav.edit'), edit_post_path(post), class: "card-link"
+          = link_to t('nav.delete'), post_path(post), :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "card-link"
+= paginate @posts

@@ -1,0 +1,20 @@
+.d-flex.align-items-center.my-4
+  %h1.mr-auto.display-5= t('nav.sign_in')
+  %ul.nav
+    %li.nav-item
+      = link_to t('nav.back'), posts_path, class: "nav-link"
+
+= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  .form-group
+    = f.label :email
+    = f.email_field :email, autofocus: true, class: "form-control"
+  .form-group
+    = f.label :password
+    = f.password_field :password, autocomplete: "off", class: "form-control"
+  - if devise_mapping.rememberable?
+    .form-check
+      %label.form-check-label
+        = f.check_box :remember_me, class: "form-check-input"
+        Remember me
+  = f.submit "Log in", class: "btn btn-primary my-3"
+= render "devise/shared/links"

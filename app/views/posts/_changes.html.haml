@@ -1,0 +1,18 @@
+- if @edits.count > 0
+  %a.alert.alert-info.d-flex.justify-content-end{"data-toggle": "collapse", href: "#changes"}
+    .mr-auto= t('history.changes')
+    %span.badge.badge-default.badge-pill.my-1= @edits.count
+  #changes.collapse
+    %ul.list-group
+    - @edits.each do |edit|
+      %li.list-group-item.flex-column.align-items-start
+        - edit.tracked_changes.each do |title, change|
+          .d-flex.w-100.justify-content-between
+            %h5 #{t('history.changed')} #{title}
+            %small= edit.updated_at
+          %p.mb-1
+            = t('history.old')
+            %span.text-danger  #{change[:from]}
+          %p.mb-1
+            = t('history.new')
+            %span.text-success  #{change[:to]}

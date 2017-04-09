@@ -1,0 +1,16 @@
+%nav.navbar.navbar-toggleable-md.navbar-light.bg-faded
+  %button.navbar-toggler.navbar-toggler-right{"data-toggle": "collapse", "data-target": "#navbarSupportedContent", "type": "button"}
+    %span.navbar-toggler-icon
+  = link_to t('title'), root_path, class: "navbar-brand"
+
+  .collapse.navbar-collapse#navbarSupportedContent
+    %ul.navbar-nav.ml-auto
+      - if user_signed_in?
+        = link_to "#{t('nav.username')} #{current_user.email}", edit_user_registration_path, class: "nav-link"
+        %li.nav-item
+          = link_to t('nav.sign_out'), destroy_user_session_path, :method => :delete, class: "nav-link"
+      - else
+        %li.nav-item
+          = link_to t('nav.sign_in'), new_user_session_path, class: "nav-link"
+        %li.nav-item
+          = link_to t('nav.sign_up'), new_user_registration_path, class: "nav-link"

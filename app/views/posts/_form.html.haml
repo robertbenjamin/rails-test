@@ -1,0 +1,14 @@
+= form_for @post do |f|
+  - if @post.errors.any?
+    - @post.errors.full_messages.each do |msg|
+      .alert.alert-danger= msg
+
+  .form-group
+    = f.label :title
+    = f.text_field :title, class: "form-control"
+
+  .form-group
+    = f.label :body
+    = f.text_area :body, class: "form-control", rows: 10
+
+  = f.submit 'Submit', class: "btn btn-primary"

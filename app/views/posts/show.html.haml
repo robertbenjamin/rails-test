@@ -1,0 +1,22 @@
+.d-flex.align-items-center.my-4
+  %h1.mr-auto.display-5= @post.title
+  %ul.nav
+    - if current_user
+      - if @post.user_id == current_user.id
+        %li.nav-item
+          = link_to t('nav.edit'), edit_post_path(@post), class: "nav-link"
+    %li.nav-item
+      = link_to t('nav.back'), posts_path, class: "nav-link"
+
+%p= @post.body
+- if I18n.locale == I18n.default_locale
+  %p.text-muted Posted #{time_ago_in_words(@post.created_at)} ago
+- else
+  %p.text-muted #{@post.created_at}
+
+
+= render 'comments'
+
+%hr.my-5
+
+= render 'changes'

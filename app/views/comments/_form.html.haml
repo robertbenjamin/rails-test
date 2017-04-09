@@ -1,0 +1,10 @@
+= form_for([@post, @comment]) do |f|
+  - if @comment.errors.any?
+    - @comment.errors.full_messages.each do |msg|
+      .alert.alert-danger= msg
+
+  .form-group
+    = f.label :body
+    = f.text_field :body, class: "form-control"
+
+  = f.submit "Submit", class: "btn btn-primary"

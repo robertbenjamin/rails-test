@@ -1,0 +1,7 @@
+.d-flex.align-items-center.my-4
+  %h1.mr-auto.display-5= t('new_comment')
+  %ul.nav
+    %li.nav-item
+      = link_to t('back'), posts_path, class: "nav-link"
+
+= render 'form'
