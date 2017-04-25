@@ -24,7 +24,6 @@ class User
   field :last_sign_in_ip,    type: String
 
   has_many :posts, dependent: :destroy
-  # has_many :comments, dependent: :destroy
 
   ## Confirmable
   # field :confirmation_token,   type: String

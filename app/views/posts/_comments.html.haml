@@ -9,9 +9,10 @@
     %li.list-group-item.flex-column.align-items-start
       .d-flex.w-100.justify-content-end
         .mr-auto= comment.body
-        - if comment.user_id == current_user.id
-          = link_to t('nav.edit'), edit_post_comment_path(@post, comment), class: "text-info mr-2"
-          = link_to t('nav.delete'), post_comment_path(@post, comment), :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "text-danger"
+        - if current_user
+          - if comment.user_id === current_user.id
+            = link_to t('nav.edit'), edit_post_comment_path(@post, comment), class: "text-info mr-2"
+            = link_to t('nav.delete'), post_comment_path(@post, comment), :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "text-danger"
       %small=comment.user.email
 - else
   .alert.alert-info= t('no_comments')
