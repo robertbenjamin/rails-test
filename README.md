@@ -1,3 +1,3 @@
 # README
 
-Simple Rails app as per Chris' requirements. Well, most of them at least.
+A simple Rails blog with user auth and signup, comments, post history, and basic internationalization.
