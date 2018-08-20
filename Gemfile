@@ -35,7 +35,7 @@ gem 'haml-rails'
 gem 'kaminari'
 gem 'kaminari-mongoid'
 gem 'bootstrap', '~> 4.0.0.alpha6'
-gem 'devise'
+gem 'devise', '~> 4.4.0'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
